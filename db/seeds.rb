@@ -4,6 +4,7 @@ avatar = ['this', 'that', 'foo', 'bar', 'baz']
 
 5.times do
   User.create!(
+    name: Faker::Simpsons.character,
     email: Faker::Internet.email,
     password: "password"
   )

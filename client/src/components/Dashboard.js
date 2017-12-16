@@ -35,11 +35,11 @@ class Dashboard extends React.Component {
     });
   }
   displayUsers = () => {
-    const { name, email } = this.props;
+    const { name } = this.props;
     return this.props.users.map( u => {
       return (
         <Segment basic>
-          <p>{u.name} - {u.email}</p>
+          <p>{u.name}</p>
         </Segment>
       )
     });
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
         <Header
           as='h1'
           fluid
-          style={headerStyle}
+          style={headerMainStyle}
           >My Dashboard
         </Header>
         <Container>
@@ -80,9 +80,17 @@ class Dashboard extends React.Component {
                   block inverted
                   style={headerStyle}
                 >
-                All Users
+                Who to follow
               </Header>
                 { this.displayUsers() }
+                <ul>
+                  <li>Homer</li>
+                  <li>Marge</li>
+                  <li>Mr. Burns</li>
+                  <li>Lisa</li>
+                  <li>Ned Flanders</li>
+                  <li>Apu</li>
+                </ul>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -91,12 +99,18 @@ class Dashboard extends React.Component {
     )
   }
 }
-const headerStyle = {
-  // margin: '3%',
-  color: 'cyan',
-  // width: '100%',
-  backgroundColor: 'black'
+const headerMainStyle = {
+  height: '30px',
+  color: 'white',
+  backgroundColor: '#1da1f2'
 }
+
+const headerStyle = {
+  margin: '3%',
+  color: 'white',
+  backgroundColor: '#1da1f2'
+}
+
 const mapStateToProps = (state) => {
   return { posts: state.posts.posts, users: state.users }
 }
