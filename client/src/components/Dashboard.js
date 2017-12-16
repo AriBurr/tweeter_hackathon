@@ -17,19 +17,18 @@ import {
 
 class Dashboard extends React.Component {
 
-  // componentDidMount() {
-  //   this.props.dispatch(getPosts());
-  //   this.props.dispatch(getUsers());
-  // }
+  componentDidMount() {
+    this.props.dispatch(getPosts());
+    this.props.dispatch(getUsers());
+  }
 
   displayPosts = () => {
-    const { id, title, body, dispatch } = this.props;
+    const { id, content, dispatch } = this.props;
 
     return this.props.posts.map( p => {
       return (
         <Segment basic>
-          <Header as='h2'>{p.title}</Header>
-          <p>{p.body}</p>
+          <p>{p.content}</p>
           <Divider></Divider>
         </Segment>
       )
@@ -88,8 +87,8 @@ const headerStyle = {
   color: 'cyan'
 }
 
-// const mapStateToProps = (state) => {
-//   return { posts: state.posts, users: state.users }
-// }
-//
-// export default connect(mapStateToProps)(Dashboard);
+const mapStateToProps = (state) => {
+  return { posts: state.posts, users: state.users }
+}
+
+export default connect(mapStateToProps)(Dashboard);

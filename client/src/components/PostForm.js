@@ -46,9 +46,9 @@ class PostForm extends React.Component {
     );
   }
 }
-// 
-// const mapStateToProps = (state) => {
-//   return { id: state.nextId }
-// }
-//
-// export default connect(mapStateToProps)(PostForm);
+
+const mapStateToProps = (state) => {
+  return { id: state.nextId }
+}
+
+export default connect(mapStateToProps)(PostForm);
