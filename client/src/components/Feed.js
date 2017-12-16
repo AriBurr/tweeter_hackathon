@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPosts } from '../actions/posts';
+import { getPosts } from '../actions/feed';
 import { getUsers } from '../actions/users';
-import PostForm from './PostForm';
 import axios from 'axios';
 import {
   Button,
@@ -13,10 +12,9 @@ import {
   Header,
   Segment,
 } from 'semantic-ui-react';
-import Bio from './Bio'
 
 
-class Dashboard extends React.Component {
+class Feed extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getPosts());
@@ -24,13 +22,13 @@ class Dashboard extends React.Component {
   }
 
   displayPosts = () => {
-    const { id, content, dispatch, posts } = this.props;
+    const { id, content, dispatch } = this.props;
 
-    return posts.map( p => {
+    return this.props.posts.map( p => {
       return (
         <Segment basic>
           <p>{p.content}</p>
-          <Link to={`/posts/${p.id}`}>View Post</Link>
+          <Link to={`/posts/${p.id}`}>Comments</Link>
           <Divider></Divider>
         </Segment>
       )
@@ -38,12 +36,12 @@ class Dashboard extends React.Component {
   }
 
   displayUsers = () => {
-    const { name, email } = this.props;
+    const { email } = this.props;
 
     return this.props.users.map( u => {
       return (
         <Segment basic>
-          <p>{u.name} - {u.email}</p>
+          <p>{u.email}</p>
         </Segment>
       )
     });
@@ -57,18 +55,16 @@ class Dashboard extends React.Component {
           block inverted
           style={headerStyle}
         >
-        User Dashboard
+        User Feed
       </Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={8}>
-              <Link to='/bio' />
-              { this.displayPosts() }
+              <Segment raised>
+                { this.displayPosts() }
+              </Segment>
             </Grid.Column>
             <Grid.Column width={8}>
-              <Segment raised>
-                <PostForm />
-              </Segment>
               <Header
                 as='h1'
                 block inverted
@@ -94,4 +90,4 @@ const mapStateToProps = (state) => {
   return { posts: state.posts.posts, users: state.users }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Feed);

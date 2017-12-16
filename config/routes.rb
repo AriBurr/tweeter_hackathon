@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create]
     end
     resources :users, only: [:index]
+    resources :feeds, only: [:index]
+
   end
 
   #Do not place any routes below this one
