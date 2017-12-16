@@ -13,6 +13,7 @@ import {
   Header,
   Segment,
 } from 'semantic-ui-react';
+import Bio from './Bio'
 
 
 class Dashboard extends React.Component {
@@ -61,6 +62,7 @@ class Dashboard extends React.Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={8}>
+              <Link to='/bio'>
               { this.displayPosts() }
             </Grid.Column>
             <Grid.Column width={8}>
