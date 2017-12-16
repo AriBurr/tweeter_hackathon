@@ -36,12 +36,12 @@ class Dashboard extends React.Component {
   }
 
   displayUsers = () => {
-    const { email } = this.props;
+    const { name, email } = this.props;
 
     return this.props.users.map( u => {
       return (
         <Segment basic>
-          <p>{u.email}</p>
+          <p>{u.name} - {u.email}</p>
         </Segment>
       )
     });

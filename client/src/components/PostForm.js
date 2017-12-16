@@ -5,7 +5,7 @@ import { nextId } from '../actions/nextId';
 import { Form, Input, TextArea, Button , Divider} from 'semantic-ui-react'
 
 class PostForm extends React.Component {
-  state = { title: '', body: '' };
+  state = { content: '' };
 
   handleChange = (e) => {
     let { name, value } = e.target;
@@ -14,12 +14,12 @@ class PostForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, body } = this.state;
+    const { content } = this.state;
     const { id, dispatch } = this.props;
-    const post = { id, title, body };
+    const post = { id, content };
     dispatch(addPost(post));
     dispatch(nextId());
-    this.setState({ title: '', body: '' })
+    this.setState({ content: '' })
   }
 
   render () {
@@ -27,16 +27,9 @@ class PostForm extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
           required
-          name='title'
-          label="Title"
-          value={this.state.title}
-          onChange={this.handleChange}
-        />
-        <Form.Input
-          required
-          name='body'
+          name='content'
           label="Body"
-          value={this.state.body}
+          value={this.state.content}
           control={TextArea}
           onChange={this.handleChange}
         />
