@@ -19,7 +19,7 @@ class Post extends React.Component {
   componentDidMount() {
     const { dispatch, match } = this.props
     dispatch(getPost(match.params.id));
-    this.props.dispatch(getComments(match.params.id));
+    dispatch(getComments(match.params.id));
   }
 
   handleChange = (e) => {
@@ -55,7 +55,14 @@ class Post extends React.Component {
   }
 
   displayComments = () => {
-
+    const { comments } = this.props;
+    return comments.map( c => {
+      return (
+        <Segment basic>
+          <p>{c.message}</p>
+        </Segment>
+      )
+    });
   }
 
   render () {
@@ -65,15 +72,15 @@ class Post extends React.Component {
         <Segment>
           {this.props.post.content}
         </Segment>
-        {this.commentForm()}
-        {this.displayComments()}
+        { this.commentForm() }
+        { this.displayComments() }
       </Container>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { post: state.posts.post, comments: state.comments }
+  return { post: state.posts.post, comments: state.comments.comments }
 }
 
 export default connect(mapStateToProps)(Post);

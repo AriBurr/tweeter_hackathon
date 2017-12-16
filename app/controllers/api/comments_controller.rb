@@ -1,5 +1,6 @@
 class Api::CommentsController < ApplicationController
   before_action :set_post
+  before_action :set_user
 
   def index
     @comments = @post.comments
@@ -7,10 +8,12 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
     if @comment.save
       render json: @comment
     else
+      binding.pry
       render json: { errors: @comment.errors.full_messages.join(',') }, status: 422
     end
   end
@@ -19,6 +22,10 @@ class Api::CommentsController < ApplicationController
 
     def set_post
       @post = Post.find(params[:post_id])
+    end
+
+    def set_user
+      @user = current_user
     end
 
     def comment_params
