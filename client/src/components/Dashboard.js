@@ -29,6 +29,7 @@ class Dashboard extends React.Component {
       return (
         <Segment basic>
           <p>{p.content}</p>
+          <Link to={`/posts/${p.id}`}>View Post</Link>
           <Divider></Divider>
         </Segment>
       )
@@ -88,7 +89,7 @@ const headerStyle = {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts, users: state.users }
+  return { posts: state.posts.posts, users: state.users }
 }
 
 export default connect(mapStateToProps)(Dashboard);

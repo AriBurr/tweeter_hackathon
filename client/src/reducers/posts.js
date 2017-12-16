@@ -1,13 +1,15 @@
-const posts = (state = [], action) => {
+const initialState = {
+  posts: [],
+  post: [],
+}
+
+const posts = (state = initialState, action) => {
   switch (action.type) {
     case 'POSTS':
-      return action.posts;
+      return {...state, posts: action.posts};
     case 'GET_POST':
-    return state.map( p => {
-      if (p.id === action.post.id)
-        return action.post;
-      return p;
-      });
+    debugger
+      return {...state, post: action.post};
     case 'ADD_POST':
       return [action.post, ...state];
     case 'UPDATE_POST':

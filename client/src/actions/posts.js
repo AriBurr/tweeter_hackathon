@@ -10,14 +10,15 @@ export const getPosts = () => {
 export const getPost = (id) => {
   return (dispatch) => {
     axios.get(`/api/posts/${id}` )
-      .then( res => dispatch({ type: 'GET_POST', post: res.data }) )
+      .then( res => {dispatch({ type: 'GET_POST', post: res.data }) )
   }
 }
 
 export const addPost = (post) => {
   return (dispatch) => {
     axios.post('/api/posts', { post } )
-      .then( res => dispatch({ type: 'ADD_POST', post: res.data }) )
+      .then( ({data, headers}) => {
+        dispatch({ type: 'ADD_POST', post: data, headers }) })
   }
 }
 
