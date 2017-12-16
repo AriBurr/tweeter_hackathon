@@ -32,6 +32,6 @@ export const updatePost = (post) => {
 export const deletePost = (id) => {
   return (dispatch) => {
     axios.delete(`/api/posts/${id}`)
-    .then( () => dispatch({ type: 'DELETE_POST', id}) )
+    .then( ({ headers }) => dispatch({ type: 'DELETE_POST', id, headers}) )
   }
 }

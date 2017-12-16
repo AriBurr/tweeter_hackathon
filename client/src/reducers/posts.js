@@ -18,7 +18,8 @@ const posts = (state = initialState, action) => {
         return p;
       });
     case 'DELETE_POST':
-      return state.filter( p => p.id !== action.id );
+      let posts = state.posts.filter( p => p.id !== action.id );
+      return { ...state, posts: posts }
     default:
       return state;
   }

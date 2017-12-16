@@ -28,7 +28,7 @@ class PostForm extends React.Component {
         <Form.Input
           required
           name='content'
-          label="Body"
+          placeholder="What's happening?"
           value={this.state.content}
           control={TextArea}
           onChange={this.handleChange}
