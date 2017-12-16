@@ -8,7 +8,6 @@ const posts = (state = initialState, action) => {
     case 'POSTS':
       return {...state, posts: action.posts};
     case 'GET_POST':
-    debugger
       return {...state, post: action.post};
     case 'ADD_POST':
       return [action.post, ...state];

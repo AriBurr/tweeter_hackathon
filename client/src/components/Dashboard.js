@@ -24,9 +24,9 @@ class Dashboard extends React.Component {
   }
 
   displayPosts = () => {
-    const { id, content, dispatch } = this.props;
+    const { id, content, dispatch, posts } = this.props;
 
-    return this.props.posts.map( p => {
+    return posts.map( p => {
       return (
         <Segment basic>
           <p>{p.content}</p>
